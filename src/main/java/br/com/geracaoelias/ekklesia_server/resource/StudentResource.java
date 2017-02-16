@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.geracaoelias.ekklesia_server.model.Student;
-import br.com.geracaoelias.ekklesia_server.model.StudentInterface;
 import br.com.geracaoelias.ekklesia_server.service.StudentService;
 
 @Component
@@ -110,7 +109,7 @@ public class StudentResource implements StudentResourceInterface {
 	
 	@GET
 	@Path("listar")
-	public List<StudentInterface> getAllStudents(){		
+	public List<Student> getAllStudents(){		
 		return studentService.listAll();
 	}
 }

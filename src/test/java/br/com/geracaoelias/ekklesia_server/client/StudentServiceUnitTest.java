@@ -12,7 +12,7 @@ import org.jmock.Mockery;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.geracaoelias.ekklesia_server.model.StudentInterface;
+import br.com.geracaoelias.ekklesia_server.model.Student;
 import br.com.geracaoelias.ekklesia_server.repository.StudentRepository;
 import br.com.geracaoelias.ekklesia_server.service.StudentService;
 import br.com.geracaoelias.ekklesia_server.service.StudentServiceImpl;
@@ -38,7 +38,7 @@ public class StudentServiceUnitTest {
 	public void findByLoginTest() {
 		final String userName = "j2eee";
 		final String password = "j2ee";
-		final StudentInterface studentInterface = null;
+		final Student studentInterface = null;
 
 		context.checking(new Expectations() {
 			{
@@ -50,8 +50,8 @@ public class StudentServiceUnitTest {
 		assertNull(studentInterface);
 
 		final String userName1 = "j2ee";
-		final StudentInterface studentInterface1 = context
-				.mock(StudentInterface.class);
+		final Student studentInterface1 = context
+				.mock(Student.class);
 
 		context.checking(new Expectations() {
 			{
@@ -135,7 +135,7 @@ public class StudentServiceUnitTest {
 	public void findByEmptyLoginTest() {
 		final String userName = "";
 		final String password = "";
-		final StudentInterface studentInterface = null;
+		final Student studentInterface = null;
 
 		context.checking(new Expectations() {
 			{
@@ -157,7 +157,7 @@ public class StudentServiceUnitTest {
 			{
 				oneOf(studentRepository)
 						.findByUserName(with(any(String.class)));
-				will(returnValue(with(any(StudentInterface.class))));
+				will(returnValue(with(any(Student.class))));
 			}
 		});
 		studentService.findByUserName(userName);
@@ -168,7 +168,7 @@ public class StudentServiceUnitTest {
 	@Test
 	public void findByBadUserNameTest() {
 		final String userName = "j2eee";
-		final StudentInterface studentInterface = null;
+		final Student studentInterface = null;
 
 		context.checking(new Expectations() {
 			{
@@ -181,8 +181,8 @@ public class StudentServiceUnitTest {
 		assertNull(studentInterface);
 
 		final String userName1 = "j2ee";
-		final StudentInterface studentInterface1 = context
-				.mock(StudentInterface.class);
+		final Student studentInterface1 = context
+				.mock(Student.class);
 
 		context.checking(new Expectations() {
 			{

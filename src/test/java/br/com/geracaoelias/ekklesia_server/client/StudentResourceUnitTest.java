@@ -14,7 +14,7 @@ import org.jmock.Mockery;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.geracaoelias.ekklesia_server.model.StudentInterface;
+import br.com.geracaoelias.ekklesia_server.model.Student;
 import br.com.geracaoelias.ekklesia_server.resource.StudentResource;
 import br.com.geracaoelias.ekklesia_server.resource.StudentResourceInterface;
 import br.com.geracaoelias.ekklesia_server.service.StudentService;
@@ -44,13 +44,13 @@ public class StudentResourceUnitTest {
 		String lastName = "jersey";
 		String dateOfBirth = "12/21/2013";
 		String emailAddress = "jersey@gmail.com";
-		final StudentInterface student = context.mock(StudentInterface.class);
+		final Student student = context.mock(Student.class);
 
 		context.checking(new Expectations() {
 			{
 				oneOf(studentService).findByUserName(userName);
 				will(returnValue(false));
-				oneOf(studentService).save(with(any(StudentInterface.class)));
+				oneOf(studentService).save(with(any(Student.class)));
 				will(returnValue(student));
 			}
 		});

@@ -8,16 +8,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.geracaoelias.ekklesia_server.model.Student;
-import br.com.geracaoelias.ekklesia_server.model.StudentInterface;
 
 @Repository("studentRepository")
 public interface StudentRepository extends JpaRepository<Student, Long> {
 	
 	@Query("select s from Student s where s.userName = :userName")
-	StudentInterface findByUserName(@Param("userName") String userName);
+	Student findByUserName(@Param("userName") String userName);
 	
 	@Query("select s from Student s")
-	List<StudentInterface> listAll();
+	List<Student> listAll();
 	
 	
 }
