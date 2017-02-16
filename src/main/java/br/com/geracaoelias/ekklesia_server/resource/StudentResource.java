@@ -109,7 +109,7 @@ public class StudentResource implements StudentResourceInterface {
 	
 	@GET
 	@Path("listar")
-	public List<Student> getAllStudents(){		
-		return studentService.listAll();
+	public List<Student> findAllStudents(){		
+		return studentService.findAll();
 	}
 }

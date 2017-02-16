@@ -8,5 +8,5 @@ public interface StudentService {
 	Student save(Student student);
 	boolean findByLogin(String userName, String password);
 	boolean findByUserName(String userName);
-	List<Student> listAll();
+	List<Student> findAll();
 }
