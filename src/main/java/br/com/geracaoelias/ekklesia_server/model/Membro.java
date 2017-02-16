@@ -33,28 +33,38 @@ public class Membro {
 	private Long id;
 	
 	@NotEmpty
-	@Size(min=4, max=60)
+	@Size(min=4, max=70)
 	private String nome;
 	
+	@NotEmpty
+	@Size(min=4, max=70)
 	private String endereço;
 	
+	@NotEmpty
+	@Size(max=8)
 	private Integer cep;
 	
+	@NotEmpty
+	@Size(min=4, max=60)
 	private String bairro;
 	
+	@NotEmpty
+	@Size(min=4, max=60)
 	private String cidade;
 	
 	@Column(length = 2, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Estados estado;
 	
+	@NotEmpty
+	@Size(min=4, max=60)
 	private String pais;
 	
-	@Size(min=4, max=60)
+	@Size(min=4, max=70)
 	private String nomePai;
 	
 	@NotEmpty
-	@Size(min=4, max=60)
+	@Size(min=4, max=70)
 	private String nomemae;
 	
 	@NotEmpty
