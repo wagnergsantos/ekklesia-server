@@ -10,7 +10,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,19 +37,14 @@ public class Membro {
 	@Size(min=4, max=70)
 	private String nome;
 	
-	@NotEmpty
 	@Size(min=4, max=70)
 	private String endereço;
 	
-	@NotEmpty
-	@Size(max=8)
 	private Integer cep;
 	
-	@NotEmpty
 	@Size(min=4, max=60)
 	private String bairro;
 	
-	@NotEmpty
 	@Size(min=4, max=60)
 	private String cidade;
 	
@@ -58,32 +52,27 @@ public class Membro {
 	@Convert(converter = EstadoConverter.class)
 	private Estado estado;
 	
-	@NotEmpty
 	@Size(min=4, max=60)
 	private String pais;
 	
 	@Size(min=4, max=70)
 	private String nomePai;
 	
-	@NotEmpty
 	@Size(min=4, max=70)
-	private String nomemae;
+	private String nomeMae;
 	
 	@NotEmpty
 	@Email
 	private String email;
 	
-	@NotNull
 	@Past
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date dataNascimento;
 	
-	@NotNull
 	@Past
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date dataBatismo;
 	
-	@NotNull
 	@Past
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date dataCasamento;

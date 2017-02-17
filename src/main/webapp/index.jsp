@@ -30,8 +30,6 @@ body {
 			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="webapi/studentResource/signup">Signup</a></li>
-				<li><a href="webapi/studentResource/login">Login</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Explore<b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -46,14 +44,10 @@ body {
 	<div class="container">
 		<div class="jumbotron">
 			<div>
-				<h1>Welcome to Online Student Enrollment!</h1>
-				<p>To get started, you need to enter your details to enroll with
-					us. Or login to access your details, if you are already enrolled.</p>
+				<h1>Bem vindo ao Ekklesia</h1>
+				<p>O Ekklesia é um sistema para controle e gerenciamento de membros de igreja.</p>
 			</div>
 
-			<a class="btn btn-primary" href="webapi/studentResource/signup">Signup
-				» </a> <a class="btn btn-primary" href="webapi/studentResource/login">Login
-				» </a>
 		</div>
 
 		<div></div>

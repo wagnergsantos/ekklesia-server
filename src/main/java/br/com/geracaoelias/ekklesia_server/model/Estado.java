@@ -1,7 +1,7 @@
 package br.com.geracaoelias.ekklesia_server.model;
 
-import br.com.geracaoelias.ekklesia_server.model.converter.ConvertedEnum;
-import br.com.geracaoelias.ekklesia_server.model.converter.ConvertedEnumResolver;
+import br.com.geracaoelias.ekklesia_server.model.converter.utils.ConvertedEnum;
+import br.com.geracaoelias.ekklesia_server.model.converter.utils.ConvertedEnumResolver;
 
 public enum Estado implements ConvertedEnum<String> {
 	/**
