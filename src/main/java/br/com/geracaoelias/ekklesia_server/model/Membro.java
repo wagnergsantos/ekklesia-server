@@ -96,18 +96,20 @@ public class Membro {
 	@Enumerated(EnumType.STRING)
 	private Escolaridade escolaridade;
 	
+	@Column(length = 14)
 	private String rg;
-	
+
+	@Column(length = 11)
 	private String cpf;
 	
+	@Column(length = 11)
 	private String telefoneResidencial;
-	
+
+	@Column(length = 11)
 	private String telefoneComercial;
-	
+
+	@Column(length = 11)
 	private String telefoneCelular;
-	
-	
-	
 	
 	
 }
