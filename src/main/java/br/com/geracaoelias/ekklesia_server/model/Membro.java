@@ -3,6 +3,7 @@ package br.com.geracaoelias.ekklesia_server.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,6 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+import br.com.geracaoelias.ekklesia_server.model.converter.EstadoConverter;
 import lombok.Data;
 
 @Component
@@ -53,8 +55,8 @@ public class Membro {
 	private String cidade;
 	
 	@Column(length = 2, nullable = false)
-	@Enumerated(EnumType.STRING)
-	private Estados estado;
+	@Convert(converter = EstadoConverter.class)
+	private Estado estado;
 	
 	@NotEmpty
 	@Size(min=4, max=60)
@@ -86,8 +88,12 @@ public class Membro {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date dataCasamento;
 	
+	@Column(length = 10, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 	
+	@Column(length = 14, nullable = false)
+	@Enumerated(EnumType.STRING)
 	private Escolaridade escolaridade;
 	
 	private String rg;
