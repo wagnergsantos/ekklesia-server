@@ -7,5 +7,6 @@ import br.com.geracaoelias.ekklesia_server.model.Membro;
 
 @Repository()
 public interface MembroRepositorio extends JpaRepository<Membro, Long> {	
+	Membro findById(Long id);
 	
 }
