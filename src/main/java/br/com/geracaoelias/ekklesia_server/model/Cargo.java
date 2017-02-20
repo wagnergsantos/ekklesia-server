@@ -4,33 +4,33 @@ import java.util.Map;
 
 import br.com.geracaoelias.ekklesia_server.util.EnumUtils;
 
-public enum EstadoCivil
+public enum Cargo
 {
-    CASADO(1, "Casado"),
-    DIVORCIADO(2, "Divorciado"),
-    SOLTERO(3, "Solteiro"),
-    VIUVO(4, "Viúvo");
+    DIACONO(1, "Diácono"),
+    EVANGELISTA(2, "Evangelista"),
+    MISSIONARIO(3, "Missionário"),
+    PASTOR(4, "Pastor");
 
-    private static final EnumUtils.EnumProperty<EstadoCivil, Integer> ENUM_PROP;
+    private static final EnumUtils.EnumProperty<Cargo, Integer> ENUM_PROP;
 
-    private static final Map<Integer, EstadoCivil> LOOKUP_MAP;
+    private static final Map<Integer, Cargo> LOOKUP_MAP;
 
     static {
-        ENUM_PROP = new EnumUtils.EnumProperty<EstadoCivil, Integer>()
+        ENUM_PROP = new EnumUtils.EnumProperty<Cargo, Integer>()
         {
 
             @Override
-            public Integer getValue(EstadoCivil type)
+            public Integer getValue(Cargo type)
             {
                 return type.getId();
             }
 
         };
 
-        LOOKUP_MAP = EnumUtils.createLookup(EstadoCivil.class, ENUM_PROP);
+        LOOKUP_MAP = EnumUtils.createLookup(Cargo.class, ENUM_PROP);
     }
 
-    public static EstadoCivil fromValue(Integer id)
+    public static Cargo fromValue(Integer id)
     {
         return LOOKUP_MAP.get(id);
     }
@@ -39,7 +39,7 @@ public enum EstadoCivil
 
     private String descricao;
 
-    EstadoCivil(Integer id, String descricao)
+    Cargo(Integer id, String descricao)
     {
         this.id = id;
         this.descricao = descricao;
@@ -54,5 +54,4 @@ public enum EstadoCivil
     {
         return descricao;
     }
-
 }

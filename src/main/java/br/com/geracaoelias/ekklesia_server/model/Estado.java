@@ -116,10 +116,11 @@ public enum Estado
      * Nome: Tocantins, Sigla: TO
      */
     TOCANTINS("Tocantins", "TO");
-    
+
     private static final EnumUtils.EnumProperty<Estado, String> ENUM_PROP;
+
     private static final Map<String, Estado> LOOKUP_MAP;
-    
+
     static {
         ENUM_PROP = new EnumUtils.EnumProperty<Estado, String>()
         {
@@ -129,16 +130,16 @@ public enum Estado
             {
                 return type.getSigla();
             }
-            
+
         };
-        
+
         LOOKUP_MAP = EnumUtils.createLookup(Estado.class, ENUM_PROP);
     }
-    
-    public static Estado fromValue(String sigla){
+
+    public static Estado fromValue(String sigla)
+    {
         return LOOKUP_MAP.get(sigla);
     }
-    
 
     private String nome;
 
@@ -154,5 +155,5 @@ public enum Estado
     {
         this.nome = nome;
         this.sigla = sigla;
-    }    
+    }
 }

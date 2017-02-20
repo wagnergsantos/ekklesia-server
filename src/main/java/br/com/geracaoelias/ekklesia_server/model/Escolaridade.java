@@ -12,10 +12,11 @@ public enum Escolaridade
     ESPECIALIZACAO(4, "Especialização"),
     MESTRADO(5, "Mestrado"),
     DOUTORADO(6, "Doutorado");
-    
+
     private static final EnumUtils.EnumProperty<Escolaridade, Integer> ENUM_PROP;
+
     private static final Map<Integer, Escolaridade> LOOKUP_MAP;
-    
+
     static {
         ENUM_PROP = new EnumUtils.EnumProperty<Escolaridade, Integer>()
         {
@@ -25,13 +26,14 @@ public enum Escolaridade
             {
                 return type.getId();
             }
-            
+
         };
-        
+
         LOOKUP_MAP = EnumUtils.createLookup(Escolaridade.class, ENUM_PROP);
     }
-    
-    public static Escolaridade fromValue(Integer id){
+
+    public static Escolaridade fromValue(Integer id)
+    {
         return LOOKUP_MAP.get(id);
     }
 

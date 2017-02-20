@@ -81,17 +81,35 @@ public class Membro
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataCasamento;
 
-    @Column(name="estadoCivil_id")
+    @Column(name = "estadoCivil_id")
     private Integer estadoCivilId;
 
     @Transient
     private EstadoCivil estadoCivil;
 
-    @Column(name="escolaridade_id")
+    @Column(name = "escolaridade_id")
     private Integer escolaridadeId;
 
     @Transient
     private Escolaridade escolaridade;
+
+    private String nacionalidade;
+
+    private String naturalidade;
+
+    private String conjuge;
+
+    @Column(name = "cargo_id")
+    private Integer cargoId;
+
+    @Transient
+    private Cargo cargo;
+
+    @Column(name = "situacao_id")
+    private Integer situacaoId;
+
+    @Transient
+    private SituacaoMembro situacao;
 
     @Column(length = 14)
     private String rg;
@@ -118,10 +136,24 @@ public class Membro
 
     // @Version
     // private Long version;
+    
+    public void setEstado(Estado estado){
+        this.estado = estado;
+        if (estado != null){
+            estadoSigla = estado.getSigla();
+        }
+    }    
 
     public Estado getEstado()
     {
         return Estado.fromValue(estadoSigla);
+    }
+    
+    public void setEscolaridade(Escolaridade escolaridade){
+        this.escolaridade = escolaridade;
+        if (escolaridade != null){
+            escolaridadeId = escolaridade.getId();
+        }
     }
 
     public Escolaridade getEscolaridade()
@@ -129,8 +161,39 @@ public class Membro
         return Escolaridade.fromValue(escolaridadeId);
     }
     
+    public void setEstadoCivil(EstadoCivil estadoCivil){
+        this.estadoCivil = estadoCivil;
+        if (estadoCivil != null){
+            estadoCivilId = estadoCivil.getId();
+        }
+    }
+
     public EstadoCivil getEstadoCivil()
     {
         return EstadoCivil.fromValue(estadoCivilId);
+    }
+    
+    public void setSituacaoMembro(SituacaoMembro situacao){
+        this.situacao = situacao;
+        if (situacao != null){
+            situacaoId = situacao.getId();
+        }
+    }
+
+    public SituacaoMembro getSituacaoMembro()
+    {
+        return SituacaoMembro.fromValue(situacaoId);
+    }
+    
+    public void setCargo(Cargo cargo){
+        this.cargo = cargo;
+        if (cargo != null){
+            cargoId = cargo.getId();
+        }
+    }
+
+    public Cargo getCargo()
+    {
+        return Cargo.fromValue(cargoId);
     }
 }
