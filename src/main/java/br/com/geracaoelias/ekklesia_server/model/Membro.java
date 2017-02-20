@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -23,93 +24,113 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 @Component
-@XmlRootElement(name="membro")
+@XmlRootElement(name = "membro")
 @Entity
-@Table(name="membro")
+@Table(name = "membro")
 @Data
-public class Membro {
-	
-	@Id
-	@GeneratedValue
-	private Long id;
-	
-	@NotEmpty
-	@Size(min=4, max=70)
-	private String nome;
-	
-	@Size(min=4, max=70)
-	private String endereço;
-	
-	private Integer cep;
-	
-	@Size(min=4, max=60)
-	private String bairro;
-	
-	@Size(min=4, max=60)
-	private String cidade;
-	
-//	@Column(length = 2, nullable = false)
-//	@Convert(converter = EstadoConverter.class)
-//	private Estado estado;
-	
-	@Size(min=4, max=60)
-	private String pais;
-	
-	@Size(min=4, max=70)
-	private String nomePai;
-	
-	@Size(min=4, max=70)
-	private String nomeMae;
-	
-	@NotEmpty
-	@Email
-	private String email;
-	
-	@Past
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date dataNascimento;
-	
-	@Past
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date dataBatismo;
-	
-	@Past
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date dataCasamento;
-	
-//	@Column(length = 10, nullable = false)
-//	@Enumerated(EnumType.STRING)
-//	private EstadoCivil estadoCivil;
-//	
-//	@Column(length = 14, nullable = false)
-//	@Enumerated(EnumType.STRING)
-//	private Escolaridade escolaridade;
-	
-	@Column(length = 14)
-	private String rg;
+public class Membro
+{
 
-	@Column(length = 11)
-	private String cpf;
-	
-	@Column(length = 11)
-	private String telefoneResidencial;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	@Column(length = 11)
-	private String telefoneComercial;
+    @NotEmpty
+    @Size(min = 4, max = 70)
+    private String nome;
 
-	@Column(length = 11)
-	private String telefoneCelular;
-	
-	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCriacao;
+    @Size(min = 4, max = 70)
+    private String endereço;
 
-	@UpdateTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataModificacao;
-	
-//	@Version
-//	private Long version;
-	
-	
+    private Integer cep;
+
+    @Size(min = 4, max = 60)
+    private String bairro;
+
+    @Size(min = 4, max = 60)
+    private String cidade;
+
+    @Column(name = "estado_sigla", length = 2, nullable = false)
+    private String estadoSigla;
+
+    @Transient
+    private Estado estado;
+
+    @Size(min = 4, max = 60)
+    private String pais;
+
+    @Size(min = 4, max = 70)
+    private String nomePai;
+
+    @Size(min = 4, max = 70)
+    private String nomeMae;
+
+    @NotEmpty
+    @Email
+    private String email;
+
+    @Past
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dataNascimento;
+
+    @Past
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dataBatismo;
+
+    @Past
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dataCasamento;
+
+    @Column(name="estadoCivil_id")
+    private Integer estadoCivilId;
+
+    @Transient
+    private EstadoCivil estadoCivil;
+
+    @Column(name="escolaridade_id")
+    private Integer escolaridadeId;
+
+    @Transient
+    private Escolaridade escolaridade;
+
+    @Column(length = 14)
+    private String rg;
+
+    @Column(length = 11)
+    private String cpf;
+
+    @Column(length = 11)
+    private String telefoneResidencial;
+
+    @Column(length = 11)
+    private String telefoneComercial;
+
+    @Column(length = 11)
+    private String telefoneCelular;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataCriacao;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataModificacao;
+
+    // @Version
+    // private Long version;
+
+    public Estado getEstado()
+    {
+        return Estado.fromValue(estadoSigla);
+    }
+
+    public Escolaridade getEscolaridade()
+    {
+        return Escolaridade.fromValue(escolaridadeId);
+    }
+    
+    public EstadoCivil getEstadoCivil()
+    {
+        return EstadoCivil.fromValue(estadoCivilId);
+    }
 }
