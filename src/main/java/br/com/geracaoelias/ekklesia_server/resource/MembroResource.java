@@ -18,6 +18,8 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.geracaoelias.ekklesia_server.model.Cargo;
+import br.com.geracaoelias.ekklesia_server.model.EstadoCivil;
 import br.com.geracaoelias.ekklesia_server.model.Membro;
 import br.com.geracaoelias.ekklesia_server.repository.MembroRepositorio;
 
@@ -37,21 +39,29 @@ public class MembroResource {
 		Membro m1 = new Membro();
 		m1.setNome("aaaaa");
 		m1.setEmail("a@email.com");
+		m1.setEstadoCivil(EstadoCivil.CASADO);
+		m1.setCargo(Cargo.DIACONO);
 		salvar.add(m1);
 
 		Membro m2 = new Membro();
 		m2.setNome("bbbbb");
 		m2.setEmail("b@email.com");
+		m2.setEstadoCivil(EstadoCivil.CASADO);
+		m2.setCargo(Cargo.EVANGELISTA);
 		salvar.add(m2);
 
 		Membro m3 = new Membro();
 		m3.setNome("cccc");
 		m3.setEmail("c@email.com");
+		m3.setEstadoCivil(EstadoCivil.SOLTERO);
+		m3.setCargo(Cargo.MISSIONARIO);
 		salvar.add(m3);
 
 		Membro m4 = new Membro();
 		m4.setNome("dddd");
 		m4.setEmail("d@email.com");
+		m4.setEstadoCivil(EstadoCivil.VIUVO);
+		m4.setCargo(Cargo.PASTOR);
 		salvar.add(m4);
 
 		membroRepositorio.save(salvar);
