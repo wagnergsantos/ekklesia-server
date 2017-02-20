@@ -10,7 +10,7 @@
 	</welcome-file-list>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/applicationContext.xml</param-value>
+		<param-value>classpath:spring/application-context.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -41,6 +41,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Spring Jersey Web Servlet</servlet-name>
-		<url-pattern>/webapi/*</url-pattern>
+		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
 </web-app>
