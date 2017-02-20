@@ -2,6 +2,8 @@ package br.com.geracaoelias.ekklesia_server.model;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import br.com.geracaoelias.ekklesia_server.util.EnumUtils;
 import lombok.Getter;
 
@@ -156,4 +158,13 @@ public enum Estado
         this.nome = nome;
         this.sigla = sigla;
     }
+    
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).
+          append("nome", nome).
+          append("sigla", sigla).
+          toString();
+    }
+      
 }
