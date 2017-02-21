@@ -21,7 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.geracaoelias.ekklesia_server.model.Cargo;
 import br.com.geracaoelias.ekklesia_server.model.Estado;
 import br.com.geracaoelias.ekklesia_server.model.EstadoCivil;
+import br.com.geracaoelias.ekklesia_server.model.Igreja;
 import br.com.geracaoelias.ekklesia_server.model.Membro;
+import br.com.geracaoelias.ekklesia_server.repository.IgrejaRepositorio;
 import br.com.geracaoelias.ekklesia_server.repository.MembroRepositorio;
 
 @Path("membros")
@@ -29,6 +31,9 @@ public class MembroResource {
 
 	@Inject
 	private MembroRepositorio membroRepositorio;
+	
+	@Inject
+    private IgrejaRepositorio igrejaRepositorio;
 
 	@POST
 	@Path("inicializar")
@@ -36,6 +41,8 @@ public class MembroResource {
 	@Produces(MediaType.TEXT_HTML)
 	public Response inicializar() {
 		List<Membro> salvar = new ArrayList<>();
+		
+		Igreja i1 = igrejaRepositorio.findByNomeContainingIgnoreCase("aaa");
 
 		Membro m1 = new Membro();
 		m1.setNome("aaaaa");
@@ -43,6 +50,7 @@ public class MembroResource {
 		m1.setEstado(Estado.ACRE);
 		m1.setEstadoCivil(EstadoCivil.CASADO);
 		m1.setCargo(Cargo.DIACONO);
+		m1.setIgreja(i1);
 		salvar.add(m1);
 
 		Membro m2 = new Membro();
@@ -51,6 +59,7 @@ public class MembroResource {
 		m2.setEstado(Estado.DISTRITOFEDERAL);
 		m2.setEstadoCivil(EstadoCivil.CASADO);
 		m2.setCargo(Cargo.EVANGELISTA);
+		m2.setIgreja(i1);
 		salvar.add(m2);
 
 		Membro m3 = new Membro();
@@ -58,6 +67,7 @@ public class MembroResource {
 		m3.setEmail("c@email.com");
 		m3.setEstadoCivil(EstadoCivil.SOLTERO);
 		m3.setCargo(Cargo.MISSIONARIO);
+		m3.setIgreja(i1);
 		salvar.add(m3);
 
 		Membro m4 = new Membro();
@@ -65,6 +75,7 @@ public class MembroResource {
 		m4.setEmail("d@email.com");
 		m4.setEstadoCivil(EstadoCivil.VIUVO);
 		m4.setCargo(Cargo.PASTOR);
+		m4.setIgreja(i1);
 		salvar.add(m4);
 
 		membroRepositorio.save(salvar);

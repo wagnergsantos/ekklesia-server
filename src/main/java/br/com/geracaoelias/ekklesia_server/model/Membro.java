@@ -5,10 +5,13 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -63,8 +66,7 @@ public class Membro
 
     @Size(min = 4, max = 70)
     private String nomeMae;
-
-    @NotEmpty
+    
     @Email
     private String email;
 
@@ -124,4 +126,9 @@ public class Membro
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataModificacao;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Igreja igreja;
+    
 }
