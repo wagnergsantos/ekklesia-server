@@ -7,7 +7,6 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
@@ -19,7 +18,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 
 import br.com.geracaoelias.ekklesia_server.model.converter.CargoConverter;
 import br.com.geracaoelias.ekklesia_server.model.converter.EscolaridadeConverter;
@@ -28,11 +26,9 @@ import br.com.geracaoelias.ekklesia_server.model.converter.EstadoConverter;
 import br.com.geracaoelias.ekklesia_server.model.converter.SituacaoMembroConverter;
 import lombok.Data;
 
-@Component
-@XmlRootElement(name = "membro")
-@Entity
-@Table(name = "membro")
 @Data
+@XmlRootElement
+@Entity
 public class Membro
 {
 
