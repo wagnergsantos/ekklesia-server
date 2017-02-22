@@ -1,5 +1,6 @@
 package br.com.geracaoelias.ekklesia_server.model;
 
+import java.lang.reflect.Method;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -16,6 +20,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Email;
@@ -31,6 +36,11 @@ import lombok.Data;
 
 @Data
 @XmlRootElement
+@NamedEntityGraphs(value = {
+    @NamedEntityGraph(name = "Membro.default", attributeNodes = {
+        @NamedAttributeNode("igreja")
+    })
+})
 @Entity
 public class Membro
 {
@@ -128,7 +138,71 @@ public class Membro
     private Date dataModificacao;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity=Igreja.class)
     private Igreja igreja;
+    
+    @Override
+    public int hashCode()
+    {
+        try {
+            final int prime = 31;
+            int result = 1;
+
+            Method m = getClass().getDeclaredMethod("getId");
+            Object obj = m.invoke(this, (Object[]) null);
+            if (obj != null) {
+                int tempHashCode = obj.hashCode();
+                result = prime * result + tempHashCode;
+            }
+
+            return result;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Resolve a questão do 'instanceof/isAssignableFrom' devido ao proxy do Hibernate.
+     */
+    @Override
+    public boolean equals(Object obj)
+    {
+        try {
+            if (obj == null) {
+                return false;
+            }
+            if ((this == obj)) {
+                return true;
+            }
+
+            // resolve comparacao entre entidades transientes e entidades com proxy
+            Class<?> c1 = Hibernate.getClass(this);
+            Class<?> c2 = Hibernate.getClass(obj);
+
+            if (!c1.equals(c2)) {
+                return false;
+            }
+
+            Method m = getClass().getDeclaredMethod("getId");
+
+            Object myValue = m.invoke(this, (Object[]) null);
+            Object otherValue = m.invoke(obj, (Object[]) null);
+
+            if (myValue != null && otherValue == null)
+                return false;
+
+            if (myValue == null && otherValue != null)
+                return false;
+
+            if (myValue != null && otherValue != null) {
+                if (!myValue.equals(otherValue))
+                    return false;
+            }
+
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     
 }
