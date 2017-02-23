@@ -32,9 +32,11 @@ import br.com.geracaoelias.ekklesia_server.model.converter.EscolaridadeConverter
 import br.com.geracaoelias.ekklesia_server.model.converter.EstadoCivilConverter;
 import br.com.geracaoelias.ekklesia_server.model.converter.EstadoConverter;
 import br.com.geracaoelias.ekklesia_server.model.converter.SituacaoMembroConverter;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @XmlRootElement
 @NamedEntityGraphs(value = {
     @NamedEntityGraph(name = "Membro.default", attributeNodes = {
