@@ -13,6 +13,9 @@ import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedEntityGraphs;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -29,44 +32,57 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @NamedEntityGraphs(value = {
-    @NamedEntityGraph(name = "Igreja.membros", attributeNodes = {@NamedAttributeNode("membros")})})
+    @NamedEntityGraph(name = "Igreja.default", attributeNodes = {@NamedAttributeNode("membros")})})
 @Entity
+@XmlAccessorType(XmlAccessType.NONE)
 public class Igreja
 {
     
     @Id
     @GeneratedValue
+    @XmlElement
     private Long        id;
 
     @NotEmpty
     @Size(min = 4, max = 70)
+    @XmlElement
     private String      nome;
 
     @Email
+    @XmlElement
     private String      email;
 
     @NotEmpty
     @Size(min = 4, max = 70)
+    @XmlElement
     private String      dirigente;
 
     @Column(length = 14)
+    @XmlElement
     private String      cnpj;
 
     @Column(length = 11)
+    @XmlElement
     private String      telefone;
 
     @Column(name = "estado_sigla", length = 2, nullable = false)
     @Convert(converter = EstadoConverter.class)
+    @XmlElement
     private Estado      estado;
 
+    @XmlElement
     private Integer     cep;
 
+    
     @Size(min = 4, max = 60)
+    @XmlElement
     private String      bairro;
 
     @Size(min = 4, max = 60)
+    @XmlElement
     private String      cidade;
 
+    @XmlElement
     private String      site;
 
     @XmlTransient

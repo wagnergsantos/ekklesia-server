@@ -23,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.cosium.spring.data.jpa.entity.graph.repository.support.JpaEntityGraphRepositoryFactoryBean;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 
 @Configuration
@@ -30,7 +31,7 @@ import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 @ComponentScan(basePackages="br.com.geracaoelias.ekklesia_server")
 @EnableWebMvc
 @EnableJpaRepositories(basePackages = "br.com.geracaoelias.ekklesia_server.repository",repositoryFactoryBeanClass = JpaEntityGraphRepositoryFactoryBean.class)
-public class AppConfig extends WebMvcConfigurerAdapter
+public class AppConfig 
 {
 
     @Bean
@@ -68,26 +69,5 @@ public class AppConfig extends WebMvcConfigurerAdapter
         properties.setProperty("hibernate.format_sql", "true");
         properties.setProperty("hibernate.show_sql", "true");
         return properties;
-    }
-
-    /* Here we register the Hibernate4Module into an ObjectMapper, then set this custom-configured ObjectMapper
-     * to the MessageConverter and return it to be added to the HttpMessageConverters of our application*/
-    public MappingJackson2HttpMessageConverter jacksonMessageConverter(){
-        MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
-
-        ObjectMapper mapper = new ObjectMapper();
-        //Registering Hibernate4Module to support lazy objects
-        mapper.registerModule(new Hibernate5Module());
-
-        messageConverter.setObjectMapper(mapper);
-        return messageConverter;
-
-    }
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        //Here we add our custom-configured HttpMessageConverter
-        converters.add(jacksonMessageConverter());
-        super.configureMessageConverters(converters);
     }
 }
